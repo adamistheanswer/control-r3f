@@ -11,8 +11,13 @@ function Product({ active, setActive }) {
       ref={meshRef}
       userData={{ hello: 'world' }}
       name="1234"
-      onClick={() => {
+      onClick={(e) => {
         setActive(!active)
+        let vector = new THREE.Vector3()
+        e.object.getWorldPosition(vector)
+        if (active) {
+          console.log(vector)
+        }
       }}>
       <boxGeometry />
       <meshNormalMaterial />
@@ -62,6 +67,7 @@ function Controls({ orbit }) {
     <>
       <OrbitControls
         ref={orbit}
+        makeDefault
         // enableDamping
         // dampingFactor={0.05}
         // rotateSpeed={1.1}
